@@ -147,6 +147,27 @@ void ANA(int val)
 }
 
 
+#define INR(reg) \
+{                                               \
+    ++(reg);                                    \
+    S_FLAG = BOOL((((reg) & 0x80) != 0));             \
+    Z_FLAG = BOOL((reg) == 0);                      \
+    H_FLAG = BOOL(((reg) & 0x0f) == 0);             \
+    P_FLAG = PARITY(reg);                       \
+    reg = reg&0xff;\
+}
+
+#define DCR(reg) \
+{                                               \
+    --(reg);                                    \
+    S_FLAG = BOOL(((reg) & 0x80) != 0);             \
+    Z_FLAG = BOOL((reg) == 0);                      \
+    H_FLAG = BOOL(!(((reg) & 0x0f) == 0x0f));         \
+    P_FLAG = PARITY(reg);                       \
+    reg = reg&0xff;\
+}
+
+
 #define TST(flag)       ((flag)!=0)
 #define RD_WORD(addr)  ((mem[addr+1]<<8) | mem[addr])
 
@@ -217,11 +238,33 @@ void main() {
             //cpu_cycles = 4;
             break;
 
+        case 0x05:            /* dcr b */
+            //cpu_cycles = 5;
+            DCR(B);
+            break;
+
+        case 0x06:            /* mvi b, data8 */
+            //cpu_cycles = 7;
+            B = RD_BYTE(PC++);
+            break;
+
+        case 0x0E:            /* mvi c, data8 */
+            //cpu_cycles = 7;
+            C = RD_BYTE(PC++);
+            break;
+
 
         case 0x0F:            /* rrc */
             //cpu_cycles = 4;
             C_FLAG = A & 0x01;
             A = (A >> 1) | (C_FLAG << 7);
+            break;
+
+
+        case 0x11:            /* lxi d, data16 */
+            //cpu_cycles = 10;
+            SET16(D,E,RD_WORD(PC));
+            PC += 2;
             break;
 
         case 0x21:             /* lxi h, data16 */
@@ -232,6 +275,11 @@ void main() {
             PC += 2;
             break;
 
+        case 0x23:            /* inx h */
+            //cpu_cycles = 5;
+            //HL++;
+            SET16(H,L, WORD(H,L)+1);
+            break;
 
         case 0x31:            /* lxi sp, data16 */
             //cpu_cycles = 10;
@@ -245,6 +293,11 @@ void main() {
             work16 = RD_WORD(PC);
             A = RD_BYTE(work16);
             PC += 2;
+            break;
+
+        case 0x3C:            /* inr a */
+            //cpu_cycles = 5;
+            INR(A);
             break;
 
         case 0x3E:            /* mvi a, data8 */
@@ -279,6 +332,14 @@ void main() {
             A = RD_BYTE(WORD(H,L));
             break;
 
+        case 0xC0:            /* rnz */
+            //cpu_cycles = 5;
+            if (!TST(Z_FLAG)) {
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
+
         case 0xC1:            /* pop b */
             //cpu_cycles = 11;
             POP2(B,C);
@@ -307,11 +368,28 @@ void main() {
 
             break;
 
+        case 0xC4:            /* cnz addr */
+            if (!TST(Z_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
+            break;
+
         case 0xC5:            /* push b */
             //cpu_cycles = 11;
             PUSH2(B,C);
             break;
 
+        case 0xC8:            /* rz */
+            //cpu_cycles = 5;
+            if (TST(Z_FLAG)) {
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
 
         case 0xCA:            /* jz addr */
             //cpu_cycles = 10;
@@ -322,6 +400,15 @@ void main() {
             }
             break;
 
+        case 0xCC:            /* cz addr */
+            if (TST(Z_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
+            break;
 
         case 0xCD:            /* call addr */
         case 0xDD:            /* call, undocumented */
@@ -331,12 +418,29 @@ void main() {
             CALL;
             break;
 
+        case 0xD0:            /* rnc */
+            //cpu_cycles = 5;
+            if (!TST(C_FLAG)) {
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
+
+
 
         case 0xD1:            /* pop d */
             //cpu_cycles = 11;
             POP2(D,E);
             break;
 
+        case 0xD2:            /* jnc addr */
+            //cpu_cycles = 10;
+            if (!TST(C_FLAG)) {
+                PC = RD_WORD(PC);
+            } else {
+                PC += 2;
+            }
+            break;
 
         case 0xD4:            /* cnc addr */
             if (!TST(C_FLAG)) {
@@ -363,6 +467,15 @@ void main() {
             }
             break;
 
+        case 0xDA:            /* jc addr */
+            //cpu_cycles = 10;
+            if (TST(C_FLAG)) {
+                PC = RD_WORD(PC);
+            } else {
+                PC += 2;
+            }
+            break;
+
 
          case 0xDC:            /* cc addr */
             if (TST(C_FLAG)) {
@@ -374,11 +487,40 @@ void main() {
             }
             break;
 
+        case 0xE0:            /* rpo */
+            //cpu_cycles = 5;
+            if (!TST(P_FLAG)) {
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
+
 
         case 0xE1:            /* pop h */
             //cpu_cycles = 11;
             //POP(HL);
             POP2(H,L);
+            break;
+
+
+        case 0xE2:            /* jpo addr */
+            //cpu_cycles = 10;
+            if (!TST(P_FLAG)) {
+                PC = RD_WORD(PC);
+            }
+            else {
+                PC += 2;
+            }
+            break;
+
+        case 0xE4:            /* cpo addr */
+            if (!TST(P_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
             break;
 
         case 0xE5:            /* push h */
@@ -395,6 +537,47 @@ void main() {
 
 
 
+        case 0xE8:            /* rpe */
+            //cpu_cycles = 5;
+            if (TST(P_FLAG)) {
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
+
+             case 0xE9:            /* pchl */
+            //cpu_cycles = 5;
+            PC = WORD(H,L);
+            break;
+
+        case 0xEA:            /* jpe addr */
+            //cpu_cycles = 10;
+            if (TST(P_FLAG)) {
+                PC = RD_WORD(PC);
+            } else {
+                PC += 2;
+            }
+            break;
+
+          case 0xEC:            /* cpe addr */
+            if (TST(P_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
+            break;
+
+        case 0xF0:            /* rp */
+            //cpu_cycles = 5;
+            if (!TST(S_FLAG)) {
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
+
+
         case 0xF1:            /* pop psw */
             //cpu_cycles = 10;
 
@@ -402,11 +585,57 @@ void main() {
             i8080_retrieve_flags(work8);
             break;
 
+                case 0xF2:            /* jp addr */
+            //cpu_cycles = 10;
+            if (!TST(S_FLAG)) {
+                PC = RD_WORD(PC);
+            } else {
+                PC += 2;
+            }
+            break;
+
+                case 0xF4:            /* cp addr */
+            if (!TST(S_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
+            break;
 
         case 0xF5:            /* push psw */
             //cpu_cycles = 11;
             //i8080_store_flags();
             PUSH2(A, i8080_pack_flags());
+            break;
+
+
+        case 0xF8:            /* rm */
+            //cpu_cycles = 5;
+            if (TST(S_FLAG)) {
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
+
+               case 0xFA:            /* jm addr */
+            //cpu_cycles = 10;
+            if (TST(S_FLAG)) {
+                PC = RD_WORD(PC);
+            } else {
+                PC += 2;
+            }
+            break;
+
+        case 0xFC:            /* cm addr */
+            if (TST(S_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
             break;
 
 
@@ -420,7 +649,7 @@ void main() {
 
 
         default:
-            current.fault = 0x1000 | op;
+            current.fault = 0x10000000 | op;
 
     }
 

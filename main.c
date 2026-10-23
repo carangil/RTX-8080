@@ -47,6 +47,7 @@ void printbuffer(int* intdata, int datalen){
 	}
 	printf("\n");
 }
+/*
 void printstate(state8080* state){
 	printf("%x memlen ", state->memlen);
 	printf("A:%02x B:%02x C:%02x D:%02x E:%02x  PC:%02x  SP:%02x  calladdr:%04x",
@@ -62,6 +63,21 @@ void printstate(state8080* state){
 	printf("\n");
 
 }
+*/
+
+
+(*syscalls[256])(state8080* state, int* mem) = {NULL};
+
+void C_WRITESTR(state8080* state, int* mem){
+	int ptr = (state->D <<8 | state->E) & 0xffff;
+
+	while (mem[ptr]!='$'){
+		fputc(mem[ptr++], stdout);
+		ptr &= 0xffff;
+	}
+
+}
+
 
 int main(int argc, char** args){
 
@@ -214,8 +230,10 @@ ram_free(source)
 	state.PC=start;
 	state.SP = 0x800;
 
+	intdata[5] = 0x8000; //trap instruction for CP/M calls
+	syscalls[9] = C_WRITESTR;
 
-	printstate(&state);
+	//printstate(&state);
 
 	int statessbo = 0;
 
@@ -239,10 +257,18 @@ ram_free(source)
 	glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 
 
+	int use_instruction[256]={0};
+
+
 	for (int iterations = 0; iterations <1059;iterations++){
 
 		//fprintf(stderr, "%04x\n", state.PC);
 
+
+		if (state.PC == 0){
+			fprintf(stderr, "Jump to 0x0000: Terminate\n");
+			break;
+		}
 
 		fprintf(stderr, "%04x\t", state.PC);
 
@@ -252,6 +278,8 @@ ram_free(source)
         state.C_FLAG,state.P_FLAG,state.H_FLAG,state.Z_FLAG,state.S_FLAG);
 		fprintf(stderr, "\n");
 
+		if (intdata[state.PC] < 256)
+			use_instruction[  intdata[state.PC] ] ++;
 
 		//send state
 		glBindBuffer(GL_SHADER_STORAGE_BUFFER, statessbo);
@@ -272,10 +300,32 @@ ram_free(source)
 		glBindBuffer(GL_SHADER_STORAGE_BUFFER, statessbo);
 		glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, sizeof(state), &state);
 
-		printstate(&state);
+		//printstate(&state);
 		if (state.fault){
 			fprintf(stderr, "%04x  fault %x\n", state.PC, state.fault);
-			state.fault=0;
+
+
+			if (state.fault & 0x10000000){
+				int op = state.fault&0xffff;
+
+				if (op <256)
+					use_instruction[op] = 0; //didn't 'use' an unimplemented instruction
+
+				if (op == 0x8000){
+
+					int call = state.C;
+
+					fprintf(stderr, "syscall %x\n", call);
+
+					if (syscalls[call])
+						syscalls[call](&state, intdata);
+
+					state.PC = intdata[state.SP];
+					state.SP+=2;
+				}
+
+				state.fault=0;
+			}
 		}
 	}
 
@@ -285,6 +335,14 @@ ram_free(source)
 
 
 	//printbuffer(intdata, datalen);
+
+
+
+	fprintf(stderr, "Instructions used:\n");
+	for (int i=0;i<256;i++){
+		if (use_instruction[i])
+			fprintf(stderr, "%02x\n", i, use_instruction[i]);
+	}
 
 
 
