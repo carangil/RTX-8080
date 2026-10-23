@@ -1,0 +1,959 @@
+0000 00      		nop 
+0001 00      		nop 
+0002 00      		nop 
+0003 00      		nop 
+0004 00      		nop 
+0005 00      		nop 
+0006 00      		nop 
+0007 00      		nop 
+0008 00      		nop 
+0009 00      		nop 
+000a 00      		nop 
+000b 00      		nop 
+000c 00      		nop 
+000d 00      		nop 
+000e 00      		nop 
+000f 00      		nop 
+0010 00      		nop 
+0011 00      		nop 
+0012 00      		nop 
+0013 00      		nop 
+0014 00      		nop 
+0015 00      		nop 
+0016 00      		nop 
+0017 00      		nop 
+0018 00      		nop 
+0019 00      		nop 
+001a 00      		nop 
+001b 00      		nop 
+001c 00      		nop 
+001d 00      		nop 
+001e 00      		nop 
+001f 00      		nop 
+0020 00      		nop 
+0021 00      		nop 
+0022 00      		nop 
+0023 00      		nop 
+0024 00      		nop 
+0025 00      		nop 
+0026 00      		nop 
+0027 00      		nop 
+0028 00      		nop 
+0029 00      		nop 
+002a 00      		nop 
+002b 00      		nop 
+002c 00      		nop 
+002d 00      		nop 
+002e 00      		nop 
+002f 00      		nop 
+0030 00      		nop 
+0031 00      		nop 
+0032 00      		nop 
+0033 00      		nop 
+0034 00      		nop 
+0035 00      		nop 
+0036 00      		nop 
+0037 00      		nop 
+0038 00      		nop 
+0039 00      		nop 
+003a 00      		nop 
+003b 00      		nop 
+003c 00      		nop 
+003d 00      		nop 
+003e 00      		nop 
+003f 00      		nop 
+0040 00      		nop 
+0041 00      		nop 
+0042 00      		nop 
+0043 00      		nop 
+0044 00      		nop 
+0045 00      		nop 
+0046 00      		nop 
+0047 00      		nop 
+0048 00      		nop 
+0049 00      		nop 
+004a 00      		nop 
+004b 00      		nop 
+004c 00      		nop 
+004d 00      		nop 
+004e 00      		nop 
+004f 00      		nop 
+0050 00      		nop 
+0051 00      		nop 
+0052 00      		nop 
+0053 00      		nop 
+0054 00      		nop 
+0055 00      		nop 
+0056 00      		nop 
+0057 00      		nop 
+0058 00      		nop 
+0059 00      		nop 
+005a 00      		nop 
+005b 00      		nop 
+005c 00      		nop 
+005d 00      		nop 
+005e 00      		nop 
+005f 00      		nop 
+0060 00      		nop 
+0061 00      		nop 
+0062 00      		nop 
+0063 00      		nop 
+0064 00      		nop 
+0065 00      		nop 
+0066 00      		nop 
+0067 00      		nop 
+0068 00      		nop 
+0069 00      		nop 
+006a 00      		nop 
+006b 00      		nop 
+006c 00      		nop 
+006d 00      		nop 
+006e 00      		nop 
+006f 00      		nop 
+0070 00      		nop 
+0071 00      		nop 
+0072 00      		nop 
+0073 00      		nop 
+0074 00      		nop 
+0075 00      		nop 
+0076 00      		nop 
+0077 00      		nop 
+0078 00      		nop 
+0079 00      		nop 
+007a 00      		nop 
+007b 00      		nop 
+007c 00      		nop 
+007d 00      		nop 
+007e 00      		nop 
+007f 00      		nop 
+0080 00      		nop 
+0081 00      		nop 
+0082 00      		nop 
+0083 00      		nop 
+0084 00      		nop 
+0085 00      		nop 
+0086 00      		nop 
+0087 00      		nop 
+0088 00      		nop 
+0089 00      		nop 
+008a 00      		nop 
+008b 00      		nop 
+008c 00      		nop 
+008d 00      		nop 
+008e 00      		nop 
+008f 00      		nop 
+0090 00      		nop 
+0091 00      		nop 
+0092 00      		nop 
+0093 00      		nop 
+0094 00      		nop 
+0095 00      		nop 
+0096 00      		nop 
+0097 00      		nop 
+0098 00      		nop 
+0099 00      		nop 
+009a 00      		nop 
+009b 00      		nop 
+009c 00      		nop 
+009d 00      		nop 
+009e 00      		nop 
+009f 00      		nop 
+00a0 00      		nop 
+00a1 00      		nop 
+00a2 00      		nop 
+00a3 00      		nop 
+00a4 00      		nop 
+00a5 00      		nop 
+00a6 00      		nop 
+00a7 00      		nop 
+00a8 00      		nop 
+00a9 00      		nop 
+00aa 00      		nop 
+00ab 00      		nop 
+00ac 00      		nop 
+00ad 00      		nop 
+00ae 00      		nop 
+00af 00      		nop 
+00b0 00      		nop 
+00b1 00      		nop 
+00b2 00      		nop 
+00b3 00      		nop 
+00b4 00      		nop 
+00b5 00      		nop 
+00b6 00      		nop 
+00b7 00      		nop 
+00b8 00      		nop 
+00b9 00      		nop 
+00ba 00      		nop 
+00bb 00      		nop 
+00bc 00      		nop 
+00bd 00      		nop 
+00be 00      		nop 
+00bf 00      		nop 
+00c0 00      		nop 
+00c1 00      		nop 
+00c2 00      		nop 
+00c3 00      		nop 
+00c4 00      		nop 
+00c5 00      		nop 
+00c6 00      		nop 
+00c7 00      		nop 
+00c8 00      		nop 
+00c9 00      		nop 
+00ca 00      		nop 
+00cb 00      		nop 
+00cc 00      		nop 
+00cd 00      		nop 
+00ce 00      		nop 
+00cf 00      		nop 
+00d0 00      		nop 
+00d1 00      		nop 
+00d2 00      		nop 
+00d3 00      		nop 
+00d4 00      		nop 
+00d5 00      		nop 
+00d6 00      		nop 
+00d7 00      		nop 
+00d8 00      		nop 
+00d9 00      		nop 
+00da 00      		nop 
+00db 00      		nop 
+00dc 00      		nop 
+00dd 00      		nop 
+00de 00      		nop 
+00df 00      		nop 
+00e0 00      		nop 
+00e1 00      		nop 
+00e2 00      		nop 
+00e3 00      		nop 
+00e4 00      		nop 
+00e5 00      		nop 
+00e6 00      		nop 
+00e7 00      		nop 
+00e8 00      		nop 
+00e9 00      		nop 
+00ea 00      		nop 
+00eb 00      		nop 
+00ec 00      		nop 
+00ed 00      		nop 
+00ee 00      		nop 
+00ef 00      		nop 
+00f0 00      		nop 
+00f1 00      		nop 
+00f2 00      		nop 
+00f3 00      		nop 
+00f4 00      		nop 
+00f5 00      		nop 
+00f6 00      		nop 
+00f7 00      		nop 
+00f8 00      		nop 
+00f9 00      		nop 
+00fa 00      		nop 
+00fb 00      		nop 
+00fc 00      		nop 
+00fd 00      		nop 
+00fe 00      		nop 
+00ff 00      		nop 
+0100 3e 01   		mvi a, 01h
+0102 fe 02   		cpi 02h
+0104 ca 00 00		jz 0000h
+0107 fe 01   		cpi 01h
+0109 c2 00 00		jnz 0000h
+010c c3 11 01		jmp 0111h
+010f 76      		hlt 
+0110 ff      		rst 7 
+0111 cd 17 01		call 0117h
+0114 c3 00 00		jmp 0000h
+0117 e1      		pop h 
+0118 7c      		mov a, h 
+0119 fe 01   		cpi 01h
+011b ca 21 01		jz 0121h
+011e c3 00 00		jmp 0000h
+0121 7d      		mov a, l 
+0122 fe 14   		cpi 14h
+0124 ca 2a 01		jz 012ah
+0127 c3 00 00		jmp 0000h
+012a 31 99 03		lxi sp, 0399h
+012d f1      		pop psw 
+012e c1      		pop b 
+012f d1      		pop d 
+0130 e1      		pop h 
+0131 31 a9 03		lxi sp, 03a9h
+0134 e5      		push h 
+0135 d5      		push d 
+0136 c5      		push b 
+0137 f5      		push psw 
+0138 3a a1 03		lda 03a1h
+013b fe 02   		cpi 02h
+013d c2 00 00		jnz 0000h
+0140 3a a2 03		lda 03a2h
+0143 fe 04   		cpi 04h
+0145 c2 00 00		jnz 0000h
+0148 3a a3 03		lda 03a3h
+014b fe 06   		cpi 06h
+014d c2 00 00		jnz 0000h
+0150 3a a4 03		lda 03a4h
+0153 fe 08   		cpi 08h
+0155 c2 00 00		jnz 0000h
+0158 3a a5 03		lda 03a5h
+015b fe 0a   		cpi 0ah
+015d c2 00 00		jnz 0000h
+0160 3a a6 03		lda 03a6h
+0163 fe 0c   		cpi 0ch
+0165 c2 00 00		jnz 0000h
+0168 3a a7 03		lda 03a7h
+016b fe 0e   		cpi 0eh
+016d c2 00 00		jnz 0000h
+0170 3a a8 03		lda 03a8h
+0173 fe 10   		cpi 10h
+0175 c2 00 00		jnz 0000h
+0178 21 a9 03		lxi h, 03a9h
+017b 7e      		mov a, m 
+017c fe a5   		cpi a5h
+017e c2 00 00		jnz 0000h
+0181 21 aa 03		lxi h, 03aah
+0184 7e      		mov a, m 
+0185 fe 3c   		cpi 3ch
+0187 c2 00 00		jnz 0000h
+018a 31 00 05		lxi sp, 0500h
+018d 21 95 01		lxi h, 0195h
+0190 e5      		push h 
+0191 c9      		ret 
+0192 c3 00 00		jmp 0000h
+0195 3e ff   		mvi a, ffh
+0197 e6 0f   		ani 0fh
+0199 fe 0f   		cpi 0fh
+019b c2 00 00		jnz 0000h
+019e 3e 5a   		mvi a, 5ah
+01a0 e6 0f   		ani 0fh
+01a2 fe 0a   		cpi 0ah
+01a4 c2 00 00		jnz 0000h
+01a7 0f      		rrc 
+01a8 fe 05   		cpi 05h
+01aa c2 00 00		jnz 0000h
+01ad 0f      		rrc 
+01ae fe 82   		cpi 82h
+01b0 c2 00 00		jnz 0000h
+01b3 0f      		rrc 
+01b4 fe 41   		cpi 41h
+01b6 c2 00 00		jnz 0000h
+01b9 0f      		rrc 
+01ba fe a0   		cpi a0h
+01bc c2 00 00		jnz 0000h
+01bf 21 34 12		lxi h, 1234h
+01c2 e5      		push h 
+01c3 c1      		pop b 
+01c4 78      		mov a, b 
+01c5 fe 12   		cpi 12h
+01c7 c2 00 00		jnz 0000h
+01ca 79      		mov a, c 
+01cb fe 34   		cpi 34h
+01cd c2 00 00		jnz 0000h
+01d0 21 01 00		lxi h, 0001h
+01d3 e5      		push h 
+01d4 f1      		pop psw 
+01d5 dc db 01		cc 01dbh
+01d8 c3 52 03		jmp 0352h
+01db e1      		pop h 
+01dc 21 d6 00		lxi h, 00d6h
+01df e5      		push h 
+01e0 f1      		pop psw 
+01e1 d4 e7 01		cnc 01e7h
+01e4 c3 52 03		jmp 0352h
+01e7 e1      		pop h 
+01e8 21 f5 01		lxi h, 01f5h
+01eb e5      		push h 
+01ec 21 01 00		lxi h, 0001h
+01ef e5      		push h 
+01f0 f1      		pop psw 
+01f1 d8      		rc 
+01f2 cd 52 03		call 0352h
+01f5 21 02 02		lxi h, 0202h
+01f8 e5      		push h 
+01f9 21 d6 00		lxi h, 00d6h
+01fc e5      		push h 
+01fd f1      		pop psw 
+01fe d0      		rnc 
+01ff cd 52 03		call 0352h
+0202 21 01 00		lxi h, 0001h
+0205 e5      		push h 
+0206 f1      		pop psw 
+0207 da 0d 02		jc 020dh
+020a cd 52 03		call 0352h
+020d 21 d6 00		lxi h, 00d6h
+0210 e5      		push h 
+0211 f1      		pop psw 
+0212 d2 18 02		jnc 0218h
+0215 cd 52 03		call 0352h
+0218 21 04 00		lxi h, 0004h
+021b e5      		push h 
+021c f1      		pop psw 
+021d ec 23 02		cpe 0223h
+0220 c3 52 03		jmp 0352h
+0223 e1      		pop h 
+0224 21 d3 00		lxi h, 00d3h
+0227 e5      		push h 
+0228 f1      		pop psw 
+0229 e4 2f 02		cpo 022fh
+022c c3 52 03		jmp 0352h
+022f e1      		pop h 
+0230 21 3d 02		lxi h, 023dh
+0233 e5      		push h 
+0234 21 04 00		lxi h, 0004h
+0237 e5      		push h 
+0238 f1      		pop psw 
+0239 e8      		rpe 
+023a cd 52 03		call 0352h
+023d 21 4a 02		lxi h, 024ah
+0240 e5      		push h 
+0241 21 d3 00		lxi h, 00d3h
+0244 e5      		push h 
+0245 f1      		pop psw 
+0246 e0      		rpo 
+0247 cd 52 03		call 0352h
+024a 21 04 00		lxi h, 0004h
+024d e5      		push h 
+024e f1      		pop psw 
+024f ea 55 02		jpe 0255h
+0252 cd 52 03		call 0352h
+0255 21 d3 00		lxi h, 00d3h
+0258 e5      		push h 
+0259 f1      		pop psw 
+025a e2 60 02		jpo 0260h
+025d cd 52 03		call 0352h
+0260 21 40 00		lxi h, 0040h
+0263 e5      		push h 
+0264 f1      		pop psw 
+0265 cc 6b 02		cz 026bh
+0268 c3 52 03		jmp 0352h
+026b e1      		pop h 
+026c 21 97 00		lxi h, 0097h
+026f e5      		push h 
+0270 f1      		pop psw 
+0271 c4 77 02		cnz 0277h
+0274 c3 52 03		jmp 0352h
+0277 e1      		pop h 
+0278 21 85 02		lxi h, 0285h
+027b e5      		push h 
+027c 21 40 00		lxi h, 0040h
+027f e5      		push h 
+0280 f1      		pop psw 
+0281 c8      		rz 
+0282 cd 52 03		call 0352h
+0285 21 92 02		lxi h, 0292h
+0288 e5      		push h 
+0289 21 97 00		lxi h, 0097h
+028c e5      		push h 
+028d f1      		pop psw 
+028e c0      		rnz 
+028f cd 52 03		call 0352h
+0292 21 40 00		lxi h, 0040h
+0295 e5      		push h 
+0296 f1      		pop psw 
+0297 ca 9d 02		jz 029dh
+029a cd 52 03		call 0352h
+029d 21 97 00		lxi h, 0097h
+02a0 e5      		push h 
+02a1 f1      		pop psw 
+02a2 c2 a8 02		jnz 02a8h
+02a5 cd 52 03		call 0352h
+02a8 21 80 00		lxi h, 0080h
+02ab e5      		push h 
+02ac f1      		pop psw 
+02ad fc b3 02		cm 02b3h
+02b0 c3 52 03		jmp 0352h
+02b3 e1      		pop h 
+02b4 21 57 00		lxi h, 0057h
+02b7 e5      		push h 
+02b8 f1      		pop psw 
+02b9 f4 bf 02		cp 02bfh
+02bc c3 52 03		jmp 0352h
+02bf e1      		pop h 
+02c0 21 cd 02		lxi h, 02cdh
+02c3 e5      		push h 
+02c4 21 80 00		lxi h, 0080h
+02c7 e5      		push h 
+02c8 f1      		pop psw 
+02c9 f8      		rm 
+02ca cd 52 03		call 0352h
+02cd 21 da 02		lxi h, 02dah
+02d0 e5      		push h 
+02d1 21 57 00		lxi h, 0057h
+02d4 e5      		push h 
+02d5 f1      		pop psw 
+02d6 f0      		rp 
+02d7 cd 52 03		call 0352h
+02da 21 80 00		lxi h, 0080h
+02dd e5      		push h 
+02de f1      		pop psw 
+02df fa e5 02		jm 02e5h
+02e2 cd 52 03		call 0352h
+02e5 21 57 00		lxi h, 0057h
+02e8 e5      		push h 
+02e9 f1      		pop psw 
+02ea f2 f0 02		jp 02f0h
+02ed cd 52 03		call 0352h
+02f0 21 f7 02		lxi h, 02f7h
+02f3 e9      		pchl 
+02f4 cd 52 03		call 0352h
+02f7 3e a5   		mvi a, a5h
+02f9 06 04   		mvi b, 04h
+02fb 0f      		rrc 
+02fc 05      		dcr b 
+02fd c2 fb 02		jnz 02fbh
+0300 fe 5a   		cpi 5ah
+0302 c4 52 03		cnz 0352h
+0305 06 10   		mvi b, 10h
+0307 3c      		inr a 
+0308 05      		dcr b 
+0309 c2 07 03		jnz 0307h
+030c fe 6a   		cpi 6ah
+030e c4 52 03		cnz 0352h
+0311 06 00   		mvi b, 00h
+0313 21 00 00		lxi h, 0000h
+0316 23      		inx h 
+0317 05      		dcr b 
+0318 c2 16 03		jnz 0316h
+031b 7c      		mov a, h 
+031c fe 01   		cpi 01h
+031e c4 52 03		cnz 0352h
+0321 7d      		mov a, l 
+0322 fe 00   		cpi 00h
+0324 c4 52 03		cnz 0352h
+0327 11 32 03		lxi d, 0332h
+032a 0e 09   		mvi c, 09h
+032c cd 05 00		call 0005h
+032f c3 00 00		jmp 0000h
+0332 38      		nop 
+0333 30      		nop 
+0334 38      		nop 
+0335 30      		nop 
+0336 20      		nop 
+0337 50      		mov d, b 
+0338 72      		mov m, d 
+0339 65      		mov h, l 
+033a 6c      		mov l, h 
+033b 69      		mov l, c 
+033c 6d      		mov l, l 
+033d 69      		mov l, c 
+033e 6e      		mov l, m 
+033f 61      		mov h, c 
+0340 72      		mov m, d 
+0341 79      		mov a, c 
+0342 20      		nop 
+0343 74      		mov m, h 
+0344 65      		mov h, l 
+0345 73      		mov m, e 
+0346 74      		mov m, h 
+0347 73      		mov m, e 
+0348 20      		nop 
+0349 63      		mov h, e 
+034a 6f      		mov l, a 
+034b 6d      		mov l, l 
+034c 70      		mov m, b 
+034d 6c      		mov l, h 
+034e 65      		mov h, l 
+034f 74      		mov m, h 
+0350 65      		mov h, l 
+0351 24      		inr h 
+0352 c1      		pop b 
+0353 26 04   		mvi h, 04h
+0355 78      		mov a, b 
+0356 0f      		rrc 
+0357 0f      		rrc 
+0358 0f      		rrc 
+0359 0f      		rrc 
+035a e6 0f   		ani 0fh
+035c 6f      		mov l, a 
+035d 7e      		mov a, m 
+035e cd 8a 03		call 038ah
+0361 78      		mov a, b 
+0362 e6 0f   		ani 0fh
+0364 6f      		mov l, a 
+0365 7e      		mov a, m 
+0366 cd 8a 03		call 038ah
+0369 79      		mov a, c 
+036a 0f      		rrc 
+036b 0f      		rrc 
+036c 0f      		rrc 
+036d 0f      		rrc 
+036e e6 0f   		ani 0fh
+0370 6f      		mov l, a 
+0371 7e      		mov a, m 
+0372 cd 8a 03		call 038ah
+0375 79      		mov a, c 
+0376 e6 0f   		ani 0fh
+0378 6f      		mov l, a 
+0379 7e      		mov a, m 
+037a cd 8a 03		call 038ah
+037d 3e 0d   		mvi a, 0dh
+037f cd 8a 03		call 038ah
+0382 3e 0a   		mvi a, 0ah
+0384 cd 8a 03		call 038ah
+0387 c3 00 00		jmp 0000h
+038a f5      		push psw 
+038b c5      		push b 
+038c d5      		push d 
+038d e5      		push h 
+038e 0e 02   		mvi c, 02h
+0390 5f      		mov e, a 
+0391 cd 05 00		call 0005h
+0394 e1      		pop h 
+0395 d1      		pop d 
+0396 c1      		pop b 
+0397 f1      		pop psw 
+0398 c9      		ret 
+0399 02      		stax b 
+039a 04      		inr b 
+039b 06 08   		mvi b, 08h
+039d 0a      		ldax b 
+039e 0c      		inr c 
+039f 0e 10   		mvi c, 10h
+03a1 00      		nop 
+03a2 00      		nop 
+03a3 00      		nop 
+03a4 00      		nop 
+03a5 00      		nop 
+03a6 00      		nop 
+03a7 00      		nop 
+03a8 00      		nop 
+03a9 a5      		ana l 
+03aa 3c      		inr a 
+03ab 00      		nop 
+03ac 00      		nop 
+03ad 00      		nop 
+03ae 00      		nop 
+03af 00      		nop 
+03b0 00      		nop 
+03b1 00      		nop 
+03b2 00      		nop 
+03b3 00      		nop 
+03b4 00      		nop 
+03b5 00      		nop 
+03b6 00      		nop 
+03b7 00      		nop 
+03b8 00      		nop 
+03b9 00      		nop 
+03ba 00      		nop 
+03bb 00      		nop 
+03bc 00      		nop 
+03bd 00      		nop 
+03be 00      		nop 
+03bf 00      		nop 
+03c0 00      		nop 
+03c1 00      		nop 
+03c2 00      		nop 
+03c3 00      		nop 
+03c4 00      		nop 
+03c5 00      		nop 
+03c6 00      		nop 
+03c7 00      		nop 
+03c8 00      		nop 
+03c9 00      		nop 
+03ca 00      		nop 
+03cb 00      		nop 
+03cc 00      		nop 
+03cd 00      		nop 
+03ce 00      		nop 
+03cf 00      		nop 
+03d0 00      		nop 
+03d1 00      		nop 
+03d2 00      		nop 
+03d3 00      		nop 
+03d4 00      		nop 
+03d5 00      		nop 
+03d6 00      		nop 
+03d7 00      		nop 
+03d8 00      		nop 
+03d9 00      		nop 
+03da 00      		nop 
+03db 00      		nop 
+03dc 00      		nop 
+03dd 00      		nop 
+03de 00      		nop 
+03df 00      		nop 
+03e0 00      		nop 
+03e1 00      		nop 
+03e2 00      		nop 
+03e3 00      		nop 
+03e4 00      		nop 
+03e5 00      		nop 
+03e6 00      		nop 
+03e7 00      		nop 
+03e8 00      		nop 
+03e9 00      		nop 
+03ea 00      		nop 
+03eb 00      		nop 
+03ec 00      		nop 
+03ed 00      		nop 
+03ee 00      		nop 
+03ef 00      		nop 
+03f0 00      		nop 
+03f1 00      		nop 
+03f2 00      		nop 
+03f3 00      		nop 
+03f4 00      		nop 
+03f5 00      		nop 
+03f6 00      		nop 
+03f7 00      		nop 
+03f8 00      		nop 
+03f9 00      		nop 
+03fa 00      		nop 
+03fb 00      		nop 
+03fc 00      		nop 
+03fd 00      		nop 
+03fe 00      		nop 
+03ff 00      		nop 
+0400 30      		nop 
+0401 31 32 33		lxi sp, 3332h
+0404 34      		inr m 
+0405 35      		dcr m 
+0406 36 37   		mvi m, 37h
+0408 38      		nop 
+0409 39      		dad sp 
+040a 61      		mov h, c 
+040b 62      		mov h, d 
+040c 63      		mov h, e 
+040d 64      		mov h, h 
+040e 65      		mov h, l 
+040f 66      		mov h, m 
+0410 00      		nop 
+0411 00      		nop 
+0412 00      		nop 
+0413 00      		nop 
+0414 00      		nop 
+0415 00      		nop 
+0416 00      		nop 
+0417 00      		nop 
+0418 00      		nop 
+0419 00      		nop 
+041a 00      		nop 
+041b 00      		nop 
+041c 00      		nop 
+041d 00      		nop 
+041e 00      		nop 
+041f 00      		nop 
+0420 00      		nop 
+0421 00      		nop 
+0422 00      		nop 
+0423 00      		nop 
+0424 00      		nop 
+0425 00      		nop 
+0426 00      		nop 
+0427 00      		nop 
+0428 00      		nop 
+0429 00      		nop 
+042a 00      		nop 
+042b 00      		nop 
+042c 00      		nop 
+042d 00      		nop 
+042e 00      		nop 
+042f 00      		nop 
+0430 00      		nop 
+0431 00      		nop 
+0432 00      		nop 
+0433 00      		nop 
+0434 00      		nop 
+0435 00      		nop 
+0436 00      		nop 
+0437 00      		nop 
+0438 00      		nop 
+0439 00      		nop 
+043a 00      		nop 
+043b 00      		nop 
+043c 00      		nop 
+043d 00      		nop 
+043e 00      		nop 
+043f 00      		nop 
+0440 00      		nop 
+0441 00      		nop 
+0442 00      		nop 
+0443 00      		nop 
+0444 00      		nop 
+0445 00      		nop 
+0446 00      		nop 
+0447 00      		nop 
+0448 00      		nop 
+0449 00      		nop 
+044a 00      		nop 
+044b 00      		nop 
+044c 00      		nop 
+044d 00      		nop 
+044e 00      		nop 
+044f 00      		nop 
+0450 00      		nop 
+0451 00      		nop 
+0452 00      		nop 
+0453 00      		nop 
+0454 00      		nop 
+0455 00      		nop 
+0456 00      		nop 
+0457 00      		nop 
+0458 00      		nop 
+0459 00      		nop 
+045a 00      		nop 
+045b 00      		nop 
+045c 00      		nop 
+045d 00      		nop 
+045e 00      		nop 
+045f 00      		nop 
+0460 00      		nop 
+0461 00      		nop 
+0462 00      		nop 
+0463 00      		nop 
+0464 00      		nop 
+0465 00      		nop 
+0466 00      		nop 
+0467 00      		nop 
+0468 00      		nop 
+0469 00      		nop 
+046a 00      		nop 
+046b 00      		nop 
+046c 00      		nop 
+046d 00      		nop 
+046e 00      		nop 
+046f 00      		nop 
+0470 00      		nop 
+0471 00      		nop 
+0472 00      		nop 
+0473 00      		nop 
+0474 00      		nop 
+0475 00      		nop 
+0476 00      		nop 
+0477 00      		nop 
+0478 00      		nop 
+0479 00      		nop 
+047a 00      		nop 
+047b 00      		nop 
+047c 00      		nop 
+047d 00      		nop 
+047e 00      		nop 
+047f 00      		nop 
+0480 00      		nop 
+0481 00      		nop 
+0482 00      		nop 
+0483 00      		nop 
+0484 00      		nop 
+0485 00      		nop 
+0486 00      		nop 
+0487 00      		nop 
+0488 00      		nop 
+0489 00      		nop 
+048a 00      		nop 
+048b 00      		nop 
+048c 00      		nop 
+048d 00      		nop 
+048e 00      		nop 
+048f 00      		nop 
+0490 00      		nop 
+0491 00      		nop 
+0492 00      		nop 
+0493 00      		nop 
+0494 00      		nop 
+0495 00      		nop 
+0496 00      		nop 
+0497 00      		nop 
+0498 00      		nop 
+0499 00      		nop 
+049a 00      		nop 
+049b 00      		nop 
+049c 00      		nop 
+049d 00      		nop 
+049e 00      		nop 
+049f 00      		nop 
+04a0 00      		nop 
+04a1 00      		nop 
+04a2 00      		nop 
+04a3 00      		nop 
+04a4 00      		nop 
+04a5 00      		nop 
+04a6 00      		nop 
+04a7 00      		nop 
+04a8 00      		nop 
+04a9 00      		nop 
+04aa 00      		nop 
+04ab 00      		nop 
+04ac 00      		nop 
+04ad 00      		nop 
+04ae 00      		nop 
+04af 00      		nop 
+04b0 00      		nop 
+04b1 00      		nop 
+04b2 00      		nop 
+04b3 00      		nop 
+04b4 00      		nop 
+04b5 00      		nop 
+04b6 00      		nop 
+04b7 00      		nop 
+04b8 00      		nop 
+04b9 00      		nop 
+04ba 00      		nop 
+04bb 00      		nop 
+04bc 00      		nop 
+04bd 00      		nop 
+04be 00      		nop 
+04bf 00      		nop 
+04c0 00      		nop 
+04c1 00      		nop 
+04c2 00      		nop 
+04c3 00      		nop 
+04c4 00      		nop 
+04c5 00      		nop 
+04c6 00      		nop 
+04c7 00      		nop 
+04c8 00      		nop 
+04c9 00      		nop 
+04ca 00      		nop 
+04cb 00      		nop 
+04cc 00      		nop 
+04cd 00      		nop 
+04ce 00      		nop 
+04cf 00      		nop 
+04d0 00      		nop 
+04d1 00      		nop 
+04d2 00      		nop 
+04d3 00      		nop 
+04d4 00      		nop 
+04d5 00      		nop 
+04d6 00      		nop 
+04d7 00      		nop 
+04d8 00      		nop 
+04d9 00      		nop 
+04da 00      		nop 
+04db 00      		nop 
+04dc 00      		nop 
+04dd 00      		nop 
+04de 00      		nop 
+04df 00      		nop 
+04e0 00      		nop 
+04e1 00      		nop 
+04e2 00      		nop 
+04e3 00      		nop 
+04e4 00      		nop 
+04e5 00      		nop 
+04e6 00      		nop 
+04e7 00      		nop 
+04e8 00      		nop 
+04e9 00      		nop 
+04ea 00      		nop 
+04eb 00      		nop 
+04ec 00      		nop 
+04ed 00      		nop 
+04ee 00      		nop 
+04ef 00      		nop 
+04f0 00      		nop 
+04f1 00      		nop 
+04f2 00      		nop 
+04f3 00      		nop 
+04f4 00      		nop 
+04f5 00      		nop 
+04f6 00      		nop 
+04f7 00      		nop 
+04f8 00      		nop 
+04f9 00      		nop 
+04fa 00      		nop 
+04fb 00      		nop 
+04fc 00      		nop 
+04fd 00      		nop 
+04fe 00      		nop 
+04ff 00      		nop 
