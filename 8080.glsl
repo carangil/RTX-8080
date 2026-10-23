@@ -111,6 +111,8 @@ int varindex;
 #define POP2(h,l)        { (l) = RD_BYTE(SP++); (h) = RD_BYTE(SP++); }
 #define PUSH2(h,l)       { WR_BYTE(--SP, h); WR_BYTE(--SP, l);  }
 
+#define POP16(w)        { w = RD_BYTE(SP++); w |=RD_BYTE(SP++)<<8 ; }
+
 #define WORD(h,l)  ( (h<<8) | (l)   )
 
 
@@ -132,9 +134,21 @@ void CMP(int val)
     P_FLAG = PARITY(work16 & 0xff);
 }
 
+#define CLR(flag)       (flag = 0)
+
+void ANA(int val)
+{
+    H_FLAG =BOOL( ((A | val) & 0x08) != 0);
+    A &= (val);
+    S_FLAG = BOOL(((A & 0x80) != 0));
+    Z_FLAG = BOOL(A == 0);
+    P_FLAG = PARITY(A);
+    CLR(C_FLAG);
+}
+
 
 #define TST(flag)       ((flag)!=0)
-#define RD_WORD(addr)  ((mem[addr+1]<<8) | mem[addr]);
+#define RD_WORD(addr)  ((mem[addr+1]<<8) | mem[addr])
 
 #define CALL \
 {             	\
@@ -160,6 +174,28 @@ void i8080_retrieve_flags(int F) {
 }
 
 
+int i8080_pack_flags() {
+
+
+
+    return  S_FLAG*F_NEG
+            +Z_FLAG*F_ZERO
+            +H_FLAG*F_HCARRY
+            +P_FLAG*F_PARITY
+            +C_FLAG*F_CARRY
+            +F_UN1;
+
+}
+
+
+
+void SET16(inout int h, inout int l, int v){
+
+        h=v>>8;
+        l=v&0xff;
+}
+
+
 void main() {
 
 
@@ -169,12 +205,45 @@ void main() {
 
     switch(op){
 
-        case 0x00: //NOP
+        case 0x00:            /* nop */
+        // Undocumented NOP.
+        case 0x08:            /* nop */
+        case 0x10:            /* nop */
+        case 0x18:            /* nop */
+        case 0x20:            /* nop */
+        case 0x28:            /* nop */
+        case 0x30:            /* nop */
+        case 0x38:            /* nop */
+            //cpu_cycles = 4;
             break;
+
+
+        case 0x0F:            /* rrc */
+            //cpu_cycles = 4;
+            C_FLAG = A & 0x01;
+            A = (A >> 1) | (C_FLAG << 7);
+            break;
+
+        case 0x21:             /* lxi h, data16 */
+            //cpu_cycles = 10;
+
+            //HL = RD_WORD(PC);
+            SET16(H, L, RD_WORD(PC));
+            PC += 2;
+            break;
+
 
         case 0x31:            /* lxi sp, data16 */
             //cpu_cycles = 10;
             SP = RD_WORD(PC);
+            PC += 2;
+            break;
+
+
+        case 0x3A:            /* lda addr */
+            //cpu_cycles = 13;
+            work16 = RD_WORD(PC);
+            A = RD_BYTE(work16);
             PC += 2;
             break;
 
@@ -183,41 +252,36 @@ void main() {
             A = RD_BYTE(PC++);
             break;
 
-        case 0xFE:            /* cpi data8 */
-            //cpu_cycles = 7;
 
-            work8 = RD_BYTE(PC++);
-            CMP(work8);
+        case 0x78:            /* mov a, b */
+            //cpu_cycles = 5;
+            A = B;
+            break;
+
+        case 0x79:            /* mov a, c */
+            //cpu_cycles = 5;
+            A = C;
             break;
 
 
-        case 0xF1:            /* pop psw */
-            //cpu_cycles = 10;
-
-            POP2(A, work8);
-            i8080_retrieve_flags(work8);
-            break;
-
-
-         case 0x7C:            /* mov a, h */
+        case 0x7C:            /* mov a, h */
             //cpu_cycles = 5;
             A = H;
             break;
 
-
-         case 0x7D:            /* mov a, l */
+        case 0x7D:            /* mov a, l */
             //cpu_cycles = 5;
             A = L;
             break;
 
+        case 0x7E:            /* mov a, m */
+            //cpu_cycles = 7;
+            A = RD_BYTE(WORD(H,L));
+            break;
 
-        case 0xCA:            /* jz addr */
-            //cpu_cycles = 10;
-            if (TST(Z_FLAG)) {
-                PC = RD_WORD(PC);
-            } else {
-                PC += 2;
-            }
+        case 0xC1:            /* pop b */
+            //cpu_cycles = 11;
+            POP2(B,C);
             break;
 
         case 0xC2:            /* jnz addr */
@@ -230,35 +294,32 @@ void main() {
             }
             break;
 
-
-
-        case 0xD1:            /* pop d */
-            //cpu_cycles = 11;
-            POP2(D,E);
-            break;
-
-
-        case 0xD5:            /* push d */
-            //cpu_cycles = 11;
-            PUSH2(D,E);
-            break;
-
-        case 0xC1:            /* pop b */
-            //cpu_cycles = 11;
-            POP2(B,C);
-            break;
-
-
-        case 0xE1:            /* pop h */
-            //cpu_cycles = 11;
-            //POP(HL);
-            POP2(H,L);
-            break;
-
         case 0xC3:            /* jmp addr */
         case 0xCB:            /* jmp addr, undocumented */
             //cpu_cycles = 10;
             PC = RD_WORD(PC);
+            break;
+
+              case 0xC9:            /* ret */
+            case 0xD9:            /* ret, undocumented */
+            //cpu_cycles = 10;
+            POP16(PC);
+
+            break;
+
+        case 0xC5:            /* push b */
+            //cpu_cycles = 11;
+            PUSH2(B,C);
+            break;
+
+
+        case 0xCA:            /* jz addr */
+            //cpu_cycles = 10;
+            if (TST(Z_FLAG)) {
+                PC = RD_WORD(PC);
+            } else {
+                PC += 2;
+            }
             break;
 
 
@@ -271,10 +332,92 @@ void main() {
             break;
 
 
+        case 0xD1:            /* pop d */
+            //cpu_cycles = 11;
+            POP2(D,E);
+            break;
+
+
+        case 0xD4:            /* cnc addr */
+            if (!TST(C_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
+            break;
+
+        case 0xD5:            /* push d */
+            //cpu_cycles = 11;
+            PUSH2(D,E);
+            break;
+
+              case 0xD8:            /* rc */
+            //cpu_cycles = 5;
+            if (TST(C_FLAG)) {
+
+
+                //cpu_cycles = 11;
+                POP16(PC);
+            }
+            break;
+
+
+         case 0xDC:            /* cc addr */
+            if (TST(C_FLAG)) {
+                //cpu_cycles = 17;
+                CALL;
+            } else {
+                //cpu_cycles = 11;
+                PC += 2;
+            }
+            break;
+
+
+        case 0xE1:            /* pop h */
+            //cpu_cycles = 11;
+            //POP(HL);
+            POP2(H,L);
+            break;
+
         case 0xE5:            /* push h */
             //cpu_cycles = 11;
             PUSH2(H,L);
             break;
+
+
+        case 0xE6:            /* ani data8 */
+            //cpu_cycles = 7;
+            work8 = RD_BYTE(PC++);
+            ANA(work8);
+            break;
+
+
+
+        case 0xF1:            /* pop psw */
+            //cpu_cycles = 10;
+
+            POP2(A, work8);
+            i8080_retrieve_flags(work8);
+            break;
+
+
+        case 0xF5:            /* push psw */
+            //cpu_cycles = 11;
+            //i8080_store_flags();
+            PUSH2(A, i8080_pack_flags());
+            break;
+
+
+        case 0xFE:            /* cpi data8 */
+            //cpu_cycles = 7;
+
+            work8 = RD_BYTE(PC++);
+            CMP(work8);
+            break;
+
+
 
         default:
             current.fault = 0x1000 | op;
