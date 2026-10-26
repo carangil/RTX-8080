@@ -1,12 +1,15 @@
 #include <stdio.h>
 
-
 #include "ztypes.h"
 #include "zmem.h"
 #include "zarray.h"
 #include "zstring.h"
 #include "zgl.h"
 #include "GLFW/glfw3.h"
+#include <ncurses.h>
+
+#define STACK_START 0x8000
+
 
 typedef struct state8080{
 	int memlen;
@@ -25,6 +28,7 @@ typedef struct state8080{
 	int H_FLAG;
 	int C_FLAG;
 	int P_FLAG;
+	int IFF;
 	int fault;
 } state8080;
 
@@ -65,8 +69,26 @@ void printstate(state8080* state){
 }
 */
 
+int isbackspace(int c){
+
+	if (c== KEY_BACKSPACE)
+		return 1;
+
+	if (c== 127)
+		return 1;
+
+	if (c== '\b')
+		return 1;
+
+	return 0;
+
+}
 
 (*syscalls[256])(state8080* state, int* mem) = {NULL};
+
+void C_WRITE(state8080* state, int* mem){
+	fputc(state->E, stdout);
+}
 
 void C_WRITESTR(state8080* state, int* mem){
 	int ptr = (state->D <<8 | state->E) & 0xffff;
@@ -79,7 +101,10 @@ void C_WRITESTR(state8080* state, int* mem){
 }
 
 
+
+
 int main(int argc, char** args){
+
 
 
 	if (!glfwInit()) {
@@ -228,9 +253,12 @@ ram_free(source)
 	state8080 state = {0};
 	state.memlen = datalen;
 	state.PC=start;
-	state.SP = 0x800;
+	state.SP = STACK_START;
 
-	intdata[5] = 0x8000; //trap instruction for CP/M calls
+	if (start == 256){
+		intdata[5] = 0x8000; //trap instruction for CP/M calls
+	}
+	syscalls[2] = C_WRITE;
 	syscalls[9] = C_WRITESTR;
 
 	//printstate(&state);
@@ -239,7 +267,7 @@ ram_free(source)
 
 	glGenBuffers(1, &statessbo);
 
-
+			printf(" return to %x\n", state.PC);
 
 	zglCheckError(__LINE__);
 
@@ -259,16 +287,23 @@ ram_free(source)
 
 	int use_instruction[256]={0};
 
+	initscr();
+	noecho();
+	scrollok(stdscr, TRUE);
+	timeout(0);
+	keypad(stdscr, TRUE);
 
-	for (int iterations = 0; iterations <1059;iterations++){
+
+	for (int iterations = 0; 1 /* iterations <2000*/;iterations++){
 
 		//fprintf(stderr, "%04x\n", state.PC);
 
-
+/*
 		if (state.PC == 0){
 			fprintf(stderr, "Jump to 0x0000: Terminate\n");
 			break;
 		}
+		*/
 
 		fprintf(stderr, "%04x\t", state.PC);
 
@@ -302,7 +337,7 @@ ram_free(source)
 
 		//printstate(&state);
 		if (state.fault){
-			fprintf(stderr, "%04x  fault %x\n", state.PC, state.fault);
+
 
 
 			if (state.fault & 0x10000000){
@@ -313,19 +348,85 @@ ram_free(source)
 
 				if (op == 0x8000){
 
-					int call = state.C;
+					//get data back
+					glBindBuffer(GL_SHADER_STORAGE_BUFFER, issbo);
+					glGetBufferSubData(GL_SHADER_STORAGE_BUFFER, 0, datalen*sizeof(intdata[0]), intdata);
 
-					fprintf(stderr, "syscall %x\n", call);
+					int call = state.C;
 
 					if (syscalls[call])
 						syscalls[call](&state, intdata);
+					else
+						fprintf(stderr, "syscall %x\n", call);
 
-					state.PC = intdata[state.SP];
+					state.fault=0;
+					state.PC = intdata[state.SP] | (intdata[state.SP+1]<<8);
 					state.SP+=2;
+				}
+			}
+
+			if (state.fault & 0x20000000){ //read
+
+				if ((state.fault & 0xff) == 0){
+					//check if key pressed
+					state.A=0;
+				}
+
+				if ((state.fault & 0xff ) == 1){
+					//state.A = 'A';
+					state.A = getch();
+					if (state.A == 10)
+						state.A=13; //translate
+
+					if (state.A==27)
+						state.A=3;
+
+					if (isbackspace(state.A))
+						state.A = '_'; //altair uses _ for backspace!
+
+					if(state.A==0xff)	//no char
+							state.A=0;
+
+
+					//printf(" GOT CHAR %x %c\n", state.A, state.A);
+
+				}
+				if ((state.fault & 0xff ) == 0){
+					state.A=0;
+				}
+				state.fault=0;
+			}
+
+
+			if (state.fault & 0x40000000){ //write
+
+				int chr = ((state.fault&0xff00)>>8)&0x7f ;
+
+				if ((state.fault & 0xff ) == 1){
+
+					if (chr == '_')
+						chr = '\b';
+
+					if (chr != 13)
+						addch(chr&0x7f);
+					//fputc(chr&0x7f,stdout);
+
+					refresh();
+				//	printf("%x %c \n", chr, chr);
 				}
 
 				state.fault=0;
 			}
+
+			if (state.fault){
+				//if fault was not cleared
+				fprintf(stderr, "%04x  fault %x\n", state.PC, state.fault);
+				state.fault=0;
+			}
+
+
+
+
 		}
 	}
 
@@ -344,7 +445,7 @@ ram_free(source)
 			fprintf(stderr, "%02x\n", i, use_instruction[i]);
 	}
 
-
+	printf("\n");
 
 	ram_free(data);
 	ram_free(intdata);
