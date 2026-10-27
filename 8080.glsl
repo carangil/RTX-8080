@@ -111,11 +111,12 @@ int varindex;
 
 #define BOOL(X)  ((X)?1:0)
 
+#define FIXSP  (SP &=0xFFFF)
 
-#define POP2(h,l)        { (l) = RD_BYTE(SP++); (h) = RD_BYTE(SP++); }
-#define PUSH2(h,l)       { WR_BYTE(--SP, h); WR_BYTE(--SP, l);  }
+#define POP2(h,l)        { (l) = RD_BYTE(SP++);FIXSP ;(h) = RD_BYTE(SP++);FIXSP; }
+#define PUSH2(h,l)       { SP--;FIXSP; WR_BYTE(SP, h); SP--;FIXSP;WR_BYTE(SP, l);  }
 
-#define POP16(w)        { w = RD_BYTE(SP++); w |=RD_BYTE(SP++)<<8 ; }
+#define POP16(w)        { w = RD_BYTE(SP++);FIXSP; w |=RD_BYTE(SP++)<<8 ;FIXSP; }
 
 #define WORD(h,l)  ( (h<<8) | (l)   )
 
@@ -157,21 +158,21 @@ void ANA(int val)
 #define INR(reg) \
 {                                               \
     ++(reg);                                    \
+    reg = reg&0xff;\
     S_FLAG = BOOL((((reg) & 0x80) != 0));             \
     Z_FLAG = BOOL((reg) == 0);                      \
     H_FLAG = BOOL(((reg) & 0x0f) == 0);             \
     P_FLAG = PARITY(reg);                       \
-    reg = reg&0xff;\
 }
 
 #define DCR(reg) \
 {                                               \
-    --(reg);                                    \
+    --(reg);\
+    reg = reg&0xff;\
     S_FLAG = BOOL(((reg) & 0x80) != 0);             \
     Z_FLAG = BOOL((reg) == 0);                      \
     H_FLAG = BOOL(!(((reg) & 0x0f) == 0x0f));         \
     P_FLAG = PARITY(reg);                       \
-    reg = reg&0xff;\
 }
 
 
@@ -339,11 +340,11 @@ int i8080_pack_flags() {
 
 void SET16(inout int h, inout int l, int v){
 
-        h=v>>8;
+        h=(v>>8)&0xff;
         l=v&0xff;
 }
 
-#define INC16(h,l, inc)   SET16(h,l, WORD(h,l)+inc)
+#define INC16(h,l, inc)   SET16(h,l, (WORD(h,l)+inc)&0xffff)
 
 
 //temps
@@ -351,7 +352,8 @@ int carry;
 int add;
 
 
-#define ITER 1000
+#define ITER 100000
+
 void main() {
 
 
@@ -361,6 +363,7 @@ void main() {
 
         if(current.fault!=0)
             break;
+        PC = PC&0xFFFF;
 
         int op = RD_BYTE(PC++);
 
@@ -1720,7 +1723,7 @@ void main() {
                 i8080_retrieve_flags(work8);
                 break;
 
-                    case 0xF2:            /* jp addr */
+            case 0xF2:            /* jp addr */
                 //cpu_cycles = 10;
                 if (!TST(S_FLAG)) {
                     PC = RD_WORD(PC);
@@ -1729,7 +1732,7 @@ void main() {
                 }
                 break;
 
-                    case 0xF4:            /* cp addr */
+                case 0xF4:            /* cp addr */
                 if (!TST(S_FLAG)) {
                     //cpu_cycles = 17;
                     CALL;
@@ -1787,7 +1790,11 @@ void main() {
                 SP = WORD(H,L);
                 break;
 
-
+        case 0xFB:            /* ei */
+            //cpu_cycles = 4;
+            IFF = 1;
+            //i8080_hal_iff(IFF);
+            break;
 
             case 0xFC:            /* cm addr */
                 if (TST(S_FLAG)) {

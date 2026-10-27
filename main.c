@@ -369,12 +369,12 @@ ram_free(source)
 
 				if ((state.fault & 0xff) == 0){
 					//check if key pressed
-					state.A=0;
+					state.A=1;
 				}
 
 				if ((state.fault & 0xff ) == 1){
 					//state.A = 'A';
-					state.A = getch();
+					state.A = getch()&0xff;
 					if (state.A == 10)
 						state.A=13; //translate
 
